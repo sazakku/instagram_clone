@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_024241) do
     t.bigint "profile_id", null: false
     t.string "profile_linkable_external_type", null: false
     t.bigint "profile_linkable_external_id", null: false
+    t.integer "kind", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_profile_linkables_on_profile_id"
