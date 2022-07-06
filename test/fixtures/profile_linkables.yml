@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: one
+  profile_linkable_external: one
+  profile_linkable_external_type: Profile linkable external
+
+two:
+  profile: two
+  profile_linkable_external: two
+  profile_linkable_external_type: Profile linkable external
