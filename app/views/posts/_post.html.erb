@@ -1,0 +1,29 @@
+<div id="<%= dom_id post %>">
+  <div class="flex flex-row">
+    <div class="basis-1/4"><%= link_to image_tag(post.profile.profile_image, class: 'w-10 h-10 rounded-full'), post.profile %></div>
+    <div class="basis-1/4"><strong class="block font-medium mb-1"><%= post.profile.nickname %></strong></div>
+    <div class="basis-1/2">03</div>
+  </div>
+  <p class="my-5">
+    <%= link_to (image_tag post.image if post.image.attached?), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to post.image.filename, post.image if post.image.attached? %>
+  </p>
+  
+
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1"><%= post.profile.nickname %></strong>
+    <%= post.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Profile:</strong>
+    <%= post.profile_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
