@@ -6,7 +6,6 @@
   </div>
   <p class="my-5">
     <%= link_to (image_tag post.image if post.image.attached?), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to post.image.filename, post.image if post.image.attached? %>
   </p>
   
 
