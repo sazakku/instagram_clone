@@ -1,23 +1,16 @@
 <div id="<%= dom_id post %>">
   <div class="flex flex-row">
-    <div class="basis-1/4"><%= link_to image_tag(post.profile.profile_image, class: 'w-10 h-10 rounded-full'), post.profile %></div>
-    <div class="basis-1/4"><strong class="block font-medium mb-1"><%= post.profile.nickname %></strong></div>
-    <div class="basis-1/2">03</div>
+    <div class="basis-12"><%= link_to image_tag(post.profile.profile_image, class: 'w-10 h-10 rounded-full'), post.profile %></div>
+    <div class="basis-1"><strong class="block font-medium mb-1"><%= link_to post.profile.nickname, post.profile  %></strong></div>
+
   </div>
-  <p class="my-5">
+  <p class="my-5 bg-cover bg-center">
     <%= link_to (image_tag post.image if post.image.attached?), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </p>
-  
-
 
   <p class="my-5">
     <strong class="block font-medium mb-1"><%= post.profile.nickname %></strong>
     <%= post.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Profile:</strong>
-    <%= post.profile_id %>
   </p>
 
   <% if action_name != "show" %>

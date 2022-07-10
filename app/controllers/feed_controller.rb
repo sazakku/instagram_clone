@@ -4,6 +4,5 @@ class FeedController < ApplicationController
   # Lista todos los posts asociados al profile
   def index
     @posts = current_user.all_post
-
   end
 end

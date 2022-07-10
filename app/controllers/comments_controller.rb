@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.assign_attributes({:profile_id => current_user.profile.id})
 
     respond_to do |format|
       if @comment.save
@@ -52,7 +53,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to @comment.post, notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
