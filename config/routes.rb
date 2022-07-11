@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   root "feed#index"
 
-  resources :posts
-  resources :comments
+  resources :posts do
+    resources :comments
+  end
   resources :profiles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
