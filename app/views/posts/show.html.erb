@@ -5,8 +5,16 @@
     <% end %>
 
     <%= render @post %>
-    <h2>Comments</h2>
-    <%= render @post.comment %>
+    <b>Comments</b>
+    <br>
+    <%- @post.comments.each do |comment|%>
+      <%= comment.body %>
+      <%= comment.profile_id %>
+      <br>
+    <% end %>
+
+    <%= render "comments/form", comment: @comment%>
+
     <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
