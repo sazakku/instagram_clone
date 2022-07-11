@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   # POST /comments or /comments.json
@@ -26,7 +27,6 @@ class CommentsController < ApplicationController
     @comment.assign_attributes({:profile_id => current_user.profile.id})
     respond_to do |format|
       if @comment.save
-        binding.pry
         format.html { redirect_to post_path(comment_params['post_id']), notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
