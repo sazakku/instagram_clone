@@ -18,11 +18,13 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    @profile = Profile.find(params[:id])
   end
 
   # POST /profiles or /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.assign_attributes({:user_id => current_user.id})
 
     respond_to do |format|
       if @profile.save

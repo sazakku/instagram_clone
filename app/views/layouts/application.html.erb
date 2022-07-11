@@ -6,14 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <!-- revisar si funciona -->
     <%= javascript_include_tag 'https://kit.fontawesome.com/978a9dc156.js', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.profile != nil%>
       <%= render "layouts/navbar" %>
     <% end %>
     <%= yield %>
