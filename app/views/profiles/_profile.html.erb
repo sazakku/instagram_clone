@@ -1,24 +1,56 @@
 <div id="<%= dom_id profile %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Nickname:</strong>
-    <%= profile.nickname %>
-  </p>
+  <header class="flex flex-wrap items-center p-4 md:py-8">
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= profile.name %>
-  </p>
+    <div class="md:w-3/12 md:ml-16">
+      <!-- profile image -->
+      <%= link_to (image_tag (profile.profile_image if profile.profile_image.attached?), class: "w-20 h-20 md:w-40 md:h-40 object-cover rounded-full border-2 border-pink-600 p-1"), profile %>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= profile.description %>
-  </p>
+    <!-- profile meta -->
+    <div class="w-8/12 md:w-7/12 ml-4">
+      <div class="md:flex md:flex-wrap md:items-center mb-4">
+        <h2 class="text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0">
+          <%= profile.nickname %>
+        </h2>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Profile image:</strong>
-    <%= link_to (image_tag profile.profile_image if profile.profile_image.attached?), profile, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to profile.profile_image.filename, profile.profile_image if profile.profile_image.attached? %>
-  </p>
+        <!-- follow button -->
+        <a href="#" class="bg-blue-500 px-2 py-1
+                        text-white font-semibold text-sm rounded block text-center
+                        sm:inline-block block">Follow</a>
+      </div>
+
+      <!-- post, following, followers list for medium screens -->
+      <ul class="hidden md:flex space-x-8 mb-4">
+        <li>
+          <span class="font-semibold"><%= profile.posts.count %></span>
+          posts
+        </li>
+
+        <li>
+          <span class="font-semibold">40.5k</span>
+          followers
+        </li>
+        <li>
+          <span class="font-semibold">302</span>
+          following
+        </li>
+      </ul>
+
+      <!-- user meta form medium screens -->
+      <div class="hidden md:block">
+        <h1 class="font-semibold"><%= profile.name %></h1>
+        <p><%= profile.description %></p>
+      </div>
+
+    </div>
+
+    <!-- user meta form small screens -->
+    <div class="md:hidden text-sm my-2">
+      <h1 class="font-semibold"><%= profile.name %></h1>
+      <p><%= profile.description %></p>
+    </div>
+
+  </header>
 
   <% if action_name != "show" %>
     <%= link_to "Show this profile", profile, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
