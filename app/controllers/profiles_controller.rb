@@ -61,6 +61,21 @@ class ProfilesController < ApplicationController
     end
   end
 
+  #Follow button
+  def follow
+    @profile = Profile.all.find(params[:id])
+    @follower = ProfileLinkable.new(profile_id: current_user.profile.id, profile_linkable_external: @profile, kind: :follower)
+    respond_to do |format|
+      if @follower.save
+        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
+        format.json { render :show, status: :created, location: @profile }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
