@@ -1,0 +1,80 @@
+<!-- posts -->
+<div class="px-px md:px-3">
+
+  <!-- user following for mobile only -->
+  <ul class="flex md:hidden justify-around space-x-8 border-t
+                text-center p-2 text-gray-600 leading-snug text-sm">
+    <li>
+      <span class="font-semibold text-gray-800 block"><% profile.posts.count %></span>
+      posts
+    </li>
+
+    <li>
+      <span class="font-semibold text-gray-800 block">40.5k</span>
+      followers
+    </li>
+    <li>
+      <span class="font-semibold text-gray-800 block">302</span>
+      following
+    </li>
+  </ul>
+
+  <!-- insta freatures -->
+  <ul class="flex items-center justify-around md:justify-center space-x-12
+                    uppercase tracking-widest font-semibold text-xs text-gray-600
+                    border-t">
+    <!-- posts tab is active -->
+    <li class="md:border-t md:border-gray-700 md:-mt-px md:text-gray-700">
+      <a class="inline-block p-3" href="#">
+        <i class="fas fa-th-large text-xl md:text-xs"></i>
+        <span class="hidden md:inline">post</span>
+      </a>
+    </li>
+    <li>
+      <a class="inline-block p-3" href="#">
+        <i class="far fa-square text-xl md:text-xs"></i>
+        <span class="hidden md:inline">igtv</span>
+      </a>
+    </li>
+    <li>
+      <a class="inline-block p-3" href="#">
+        <i class="fas fa-user border border-gray-500
+                             px-1 pt-1 rounded text-xl md:text-xs"></i>
+        <span class="hidden md:inline">tagged</span>
+      </a>
+    </li>
+  </ul>
+  <!-- flexbox grid -->
+  <div class="flex flex-wrap -mx-px md:-mx-3">
+
+    <%- profile.posts.each do |post| %>
+      <!-- column -->
+      <div class="w-1/3 p-px md:px-3">
+        <!-- post 1-->
+        <%= link_to post do %>
+          <article class="post bg-gray-100 text-white relative pb-full md:mb-6">
+            <!-- post image-->
+            <%= image_tag post.image, class: "w-full h-full absolute left-0 top-0 object-cover" if post.image.attached? %>
+            <i class="fas fa-square absolute right-0 top-0 m-1"></i>
+            <!-- overlay-->
+            <div class="overlay bg-gray-800 bg-opacity-25 w-full h-full absolute
+                                left-0 top-0 hidden">
+              <div class="flex justify-center items-center
+                                    space-x-4 h-full">
+                <span class="p-2">
+                  <i class="fas fa-heart"></i>
+                  0
+                </span>
+
+                <span class="p-2">
+                  <i class="fas fa-comment"></i>
+                  <%= post.comments.count %>
+                </span>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

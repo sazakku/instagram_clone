@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1 or /profiles/1.json
   def show
     @profile = Profile.find(params[:id])
+    @post = @profile.posts.build
   end
 
   # GET /profiles/new
@@ -24,7 +25,7 @@ class ProfilesController < ApplicationController
   # POST /profiles or /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    @profile.assign_attributes({:user_id => current_user.id})
+    @profile.assign_attributes({user_id: current_user.id})
 
     respond_to do |format|
       if @profile.save
@@ -60,14 +61,39 @@ class ProfilesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id])
+  #Follow button
+  def follow
+    @profile = Profile.find(params[:id])
+    @follower = ProfileLinkablesService.call(current_user.profile.id, @profile, :follower, :create)
+    respond_to do |format|
+      if @follower.save
+        format.html { redirect_to profile_url(@profile), notice: "You are follow this profile."}
+        format.json { render :show, status: :created, location: @profile }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def profile_params
-      params.require(:profile).permit(:nickname, :name, :description, :profile_image, :user_id)
+  #Unfollow button
+  def unfollow
+    @profile = Profile.find(params[:id])
+    ProfileLinkablesService.call(current_user.profile.id, @profile, :follower, :destroy)
+    respond_to do |format|
+      format.html { redirect_to profile_url(@profile), notice: "You aren't follow this profile" }
+      format.json { head :no_content }
     end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def profile_params
+    params.require(:profile).permit(:nickname, :name, :description, :profile_image, :user_id)
+  end
 end

@@ -61,14 +61,39 @@ class PostsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
+  # Like button
+  def like
+    @post = Post.find(params[:id])
+    @like = ProfileLinkablesService.call(current_user.profile.id, @post, :like, :create)
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to post_url(@post), notice: "like this post."}
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:image, :description, :profile_id)
+  # Unlike button
+  def unlike
+    @post = Post.find(params[:id])
+    ProfileLinkablesService.call(current_user.profile.id, @post, :like, :destroy)
+    respond_to do |format|
+      format.html { redirect_to post_url(@post), notice: "Unlike this post" }
+      format.json { head :no_content }
     end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:image, :description, :profile_id)
+  end
 end
