@@ -12,9 +12,21 @@
     <strong class="block font-medium mb-1"><%= post.profile.nickname %></strong>
     <%= post.description %>
   </p>
+  <div>
+    <% if post.like?(current_user.profile.id, post.id) %>
+      <%= button_to "unlike", unlike_path(post), method: "delete", class: "bg-blue-500 px-2 py-1
+                          text-white font-semibold text-sm rounded block text-center
+                          sm:inline-block block"%>
+    <% else %>
+      <%= button_to "like", like_path(post), method: "put", class: "bg-blue-500 px-2 py-1
+                          text-white font-semibold text-sm rounded block text-center
+                          sm:inline-block block" %>
+    <% end %>
+    <span class="font-semibold"><%= post.count_like(post.id) %></span>
+  </div>
+
 
   <% if action_name != "show" && current_user.profile.id == post.profile_id %>
-
     <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
