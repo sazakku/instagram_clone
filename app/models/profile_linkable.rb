@@ -4,5 +4,5 @@ class ProfileLinkable < ApplicationRecord
 
   enum kind: %i[like follower]
 
-  validates :profile_id, uniqueness: { scope: :profile }
+  # validates :profile_id, :profile_linkable_external_id, uniqueness: { scope: :profile }
 end

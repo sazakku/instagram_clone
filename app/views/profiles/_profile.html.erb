@@ -14,10 +14,16 @@
         </h2>
 
         <!-- follow button -->
-        <a href="#" class="bg-blue-500 px-2 py-1
-                        text-white font-semibold text-sm rounded block text-center
-                        sm:inline-block block">Follow</a>
       </div>
+      <% if @profile.follow?(current_user.profile.id, @profile.id) %>
+        <%= button_to "Following", unfollow_path(@profile), method: "delete", class: "bg-blue-500 px-2 py-1
+                        text-white font-semibold text-sm rounded block text-center
+                        sm:inline-block block"%>
+      <% else %>
+        <%= button_to "Follow", follow_path(@profile), method: "put", class: "bg-blue-500 px-2 py-1
+                        text-white font-semibold text-sm rounded block text-center
+                        sm:inline-block block" %>
+      <% end %>
 
       <!-- post, following, followers list for medium screens -->
       <ul class="hidden md:flex space-x-8 mb-4">

@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
   # POST /profiles or /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    @profile.assign_attributes({:user_id => current_user.id})
+    @profile.assign_attributes({user_id: current_user.id})
 
     respond_to do |format|
       if @profile.save
@@ -63,27 +63,37 @@ class ProfilesController < ApplicationController
 
   #Follow button
   def follow
-    @profile = Profile.all.find(params[:id])
-    @follower = ProfileLinkable.new(profile_id: current_user.profile.id, profile_linkable_external: @profile, kind: :follower)
+    @profile = Profile.find(params[:id])
+    @follower = ProfileLinkablesService.call(current_user.profile.id, @profile, :follower, :create)
     respond_to do |format|
       if @follower.save
-        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
+        format.html { redirect_to profile_url(@profile), notice: "You are follow this profile."}
         format.json { render :show, status: :created, location: @profile }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id])
+  #Unfollow button
+  def unfollow
+    @profile = Profile.find(params[:id])
+    ProfileLinkablesService.call(current_user.profile.id, @profile, :follower, :destroy)
+    respond_to do |format|
+      format.html { redirect_to profile_url(@profile), notice: "You aren't follow this profile" }
+      format.json { head :no_content }
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def profile_params
-      params.require(:profile).permit(:nickname, :name, :description, :profile_image, :user_id)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def profile_params
+    params.require(:profile).permit(:nickname, :name, :description, :profile_image, :user_id)
+  end
 end
