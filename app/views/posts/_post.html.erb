@@ -13,7 +13,7 @@
     <%= post.description %>
   </p>
   <div>
-    <% if post.like?(current_user.profile.id, post.profile_id) %>
+    <% if post.like?(current_user.profile.id, post.id) %>
       <%= button_to "unlike", unlike_path(post), method: "delete", class: "bg-blue-500 px-2 py-1
                           text-white font-semibold text-sm rounded block text-center
                           sm:inline-block block"%>
@@ -22,7 +22,7 @@
                           text-white font-semibold text-sm rounded block text-center
                           sm:inline-block block" %>
     <% end %>
-    <span class="font-semibold"><%= profile.posts.count %></span>
+    <span class="font-semibold"><%= post.count_like(post.id) %></span>
   </div>
 
 

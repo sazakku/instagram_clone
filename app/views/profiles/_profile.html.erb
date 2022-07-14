@@ -15,14 +15,17 @@
 
         <!-- follow button -->
       </div>
-      <% if @profile.follow?(current_user.profile.id, @profile.id) %>
-        <%= button_to "Following", unfollow_path(@profile), method: "delete", class: "bg-blue-500 px-2 py-1
-                        text-white font-semibold text-sm rounded block text-center
-                        sm:inline-block block"%>
-      <% else %>
-        <%= button_to "Follow", follow_path(@profile), method: "put", class: "bg-blue-500 px-2 py-1
-                        text-white font-semibold text-sm rounded block text-center
-                        sm:inline-block block" %>
+      <% if action_name != "index"%>
+
+        <% if @profile.follow?(current_user.profile.id, @profile.id) %>
+          <%= button_to "Following", unfollow_path(@profile), method: "delete", class: "bg-blue-500 px-2 py-1
+                            text-white font-semibold text-sm rounded block text-center
+                            sm:inline-block block"%>
+        <% else %>
+          <%= button_to "Follow", follow_path(@profile), method: "put", class: "bg-blue-500 px-2 py-1
+                            text-white font-semibold text-sm rounded block text-center
+                            sm:inline-block block" %>
+        <% end %>
       <% end %>
 
       <!-- post, following, followers list for medium screens -->
@@ -58,7 +61,7 @@
 
   </header>
 
-  <% if action_name != "show" %>
+  <% if action_name != "show"%>
     <%= link_to "Show this profile", profile, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this profile', edit_profile_path(profile), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
