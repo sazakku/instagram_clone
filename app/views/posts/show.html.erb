@@ -8,9 +8,7 @@
     <b>Comments</b>
     <br>
     <%- @post.comments.each do |comment|%>
-      <%= comment.body %>
-      <%= comment.profile_id %>
-      <br>
+      <%= render "comments/comment", comment: comment %>
     <% end %>
 
     <%= render "comments/form", comment: @comment%>

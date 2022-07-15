@@ -1,22 +1,13 @@
 <div id="<%= dom_id comment %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Body:</strong>
+    <strong class="block font-small mb-0">Body:</strong>
     <%= comment.body %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Post:</strong>
-    <%= comment.post_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Profile:</strong>
-    <%= comment.profile_id %>
+    <%= comment.id %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this comment", post_comments_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this comment', edit_post_comment_path(comment.id, comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this comment", post_comments_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block " %>
+    <%= link_to 'Edit this comment', edit_post_comment_path(comment.id, comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block " %>
     <hr class="mt-6">
   <% end %>
 </div>
