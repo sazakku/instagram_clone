@@ -46,6 +46,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.12.0, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.3.15, rbenv: 3.0.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cable_ready (v5.0.0.pre8, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v3.37.1, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v4.1.0, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.3, rbenv: 3.0.1) [gem]" level="application" />
@@ -109,10 +110,12 @@
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v4.0.3, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.4.2, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.0.4, rbenv: 3.0.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="stimulus_reflex (v3.5.0.pre8, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="strscan (v3.0.3, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tailwindcss-rails (v2.0.10, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="temple (v0.8.2, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.2.1, rbenv: 3.0.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thread-local (v1.1.0, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.10, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.3.0, rbenv: 3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbo-rails (v1.1.1, rbenv: 3.0.1) [gem]" level="application" />
@@ -134,86 +137,76 @@
   <component name="RailsGeneratorsCache">
     <option name="generators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:devise" />
-        <option value="active_record:multi_db" />
-        <option value="application_record" />
-        <option value="benchmark" />
-        <option value="channel" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="devise" />
-        <option value="devise:controllers" />
-        <option value="devise:install" />
-        <option value="devise:views" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="mailbox" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="mongoid:devise" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="simple_form:install" />
-        <option value="stimulus" />
-        <option value="system_test" />
-        <option value="task" />
-        <option value="test_unit:channel" />
-        <option value="test_unit:generator" />
-        <option value="test_unit:install" />
-        <option value="test_unit:mailbox" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
     <option name="myGenerators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:devise" />
-        <option value="active_record:multi_db" />
-        <option value="application_record" />
-        <option value="benchmark" />
-        <option value="channel" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="devise" />
-        <option value="devise:controllers" />
-        <option value="devise:install" />
-        <option value="devise:views" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="mailbox" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="mongoid:devise" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="simple_form:install" />
-        <option value="stimulus" />
-        <option value="system_test" />
-        <option value="task" />
-        <option value="test_unit:channel" />
-        <option value="test_unit:generator" />
-        <option value="test_unit:install" />
-        <option value="test_unit:mailbox" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
   </component>
@@ -423,6 +416,11 @@
                   <RakeTaskImpl description="" fullCommand="stimulus:manifest:update" id="update" />
                 </subtasks>
               </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="stimulus_reflex">
+            <subtasks>
+              <RakeTaskImpl description="✨ Install StimulusReflex in this application" fullCommand="stimulus_reflex:install" id="install" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="tailwindcss">
