@@ -74,6 +74,9 @@ GEM
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cable_ready (5.0.0.pre8)
+      rails (>= 5.2)
+      thread-local (>= 1.1.0)
     capybara (3.37.1)
       addressable
       matrix
@@ -230,11 +233,18 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
+    stimulus_reflex (3.5.0.pre8)
+      cable_ready (= 5.0.0.pre8)
+      nokogiri
+      rack
+      rails (>= 5.2)
+      redis
     strscan (3.0.3)
     tailwindcss-rails (2.0.10-arm64-darwin)
       railties (>= 6.0.0)
     temple (0.8.2)
     thor (1.2.1)
+    thread-local (1.1.0)
     tilt (2.0.10)
     timeout (0.3.0)
     turbo-rails (1.1.1)
@@ -285,6 +295,7 @@ DEPENDENCIES
   slim
   sprockets-rails
   stimulus-rails
+  stimulus_reflex (= 3.5.0.pre8)
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data

@@ -59,6 +59,31 @@ class CommentsController < ApplicationController
     end
   end
 
+  # Like button
+  def like
+    @comment = Comment.find(params[:id])
+    @like_comment = ProfileLinkablesService.call(current_user.profile.id, @comment, :like, :create)
+    respond_to do |format|
+      if @like_comment.save
+        format.html { redirect_to post_path(comment_params['post_id']), notice: "like this comment."}
+        format.json { render :show, status: :created, location: @comment }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # Unlike button
+  def unlike
+    @comment = Comment.find(params[:id])
+    ProfileLinkablesService.call(current_user.profile.id, @comment, :like, :destroy)
+    respond_to do |format|
+      format.html { redirect_to post_path(comment_params['post_id']), notice: "Unlike this comment" }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment

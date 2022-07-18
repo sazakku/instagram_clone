@@ -6,6 +6,20 @@
 
     <%= render @comment %>
 
+<!--    <div>
+      <%# if comment.like?(current_user.profile.id, @comment) %>
+        <%= button_to "unlike", unlike_post_comment_path(@comment), method: "delete", class: "bg-blue-500 px-2 py-1
+                          text-white font-semibold text-sm rounded block text-center
+                          sm:inline-block block"%>
+      <%# else %>
+        <%= button_to "like", like_post_comment_path(@comment), method: "put", class: "bg-blue-500 px-2 py-1
+                          text-white font-semibold text-sm rounded block text-center
+                          sm:inline-block block" %>
+      <%# end %>
+    </div>
+    <span class="font-semibold"><%#= @comment.count_like(@comment) %></span>
+    <br>-->
+
     <%= link_to 'Edit this comment', edit_post_comment_path(@comment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this comment', post_comment_url(@comment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>

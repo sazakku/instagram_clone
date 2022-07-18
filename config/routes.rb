@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
 
+  devise_for :users
+  resources :pages, only: :index
   root "feed#index"
 
   resources :posts do
-    resources :comments
+    resources :comments do
+      put 'like', on: :member
+      delete 'unlike', on: :member
+    end
   end
   resources :profiles
   # Routes for follow
