@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
 
+  devise_for :users
+  resources :pages, only: :index
   root "feed#index"
 
   resources :posts do
