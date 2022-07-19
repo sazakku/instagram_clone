@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :profile
   has_many :profile_linkables
 
-  def like?(current_profile = current_user.profile.id, comment_id)
+  def like?(current_profile, comment_id)
     !!Profile.find(current_profile).profile_linkables.find do |like|
       like.kind == "like" && like.profile_id == current_profile && like.profile_linkable_external_id == comment_id
     end
@@ -14,4 +14,8 @@ class Comment < ApplicationRecord
       follow.kind == "like" && follow.profile_linkable_external.id == comment_id
     end.count
   end
+end
+
+!!Profile.find(1).profile_linkables.find do |like|
+  like.kind == "like" && like.profile_id == 1 && like.profile_linkable_external_id == 10
 end

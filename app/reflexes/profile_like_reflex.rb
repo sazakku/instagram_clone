@@ -22,10 +22,16 @@ class ProfileLikeReflex < ApplicationReflex
   #
   # Example:
   #
-  #   before_reflex do
+  before_reflex do
   #     # throw :abort # this will prevent the Reflex from continuing
   #     # learn more about callbacks at https://docs.stimulusreflex.com/rtfm/lifecycle
-  #   end
+  comment_id = element.dataset[:comment_id].to_i
+  current_profile_id = element.dataset[:current_user].to_i
+  @comment = Comment.find(comment_id)
+  @state = @comment.like?(current_profile_id, comment_id)
+  morph "#{dom_id(@comment, 'like')}",
+        render(partial: 'comments/like', locals: { comment: @comment, state: @state })
+  end
   #
   #   def example(argument=true)
   #     # Your logic here...
@@ -35,13 +41,13 @@ class ProfileLikeReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com/rtfm/reflex-classes
 
   def like
-    comment_id = element.dataset[:comment_id]
-    current_profile_id = element.dataset[:current_user]
+    comment_id = element.dataset[:comment_id].to_i
+    current_profile_id = element.dataset[:current_user].to_i
     @comment = Comment.find(comment_id)
     @state = @comment.like?(current_profile_id, comment_id)
-
-    morph "#comment-#{comment_id}",
-          render(partial: 'posts/post', locals: { posts: @comment.post_id })
+    binding.pry
+    morph "#{dom_id(@comment, 'like')}",
+          render(partial: 'comments/like', locals: { comment: @comment, state: @state })
   end
 
   def unlike

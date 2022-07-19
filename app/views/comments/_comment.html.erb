@@ -4,13 +4,10 @@
     <%= comment.body %>
     <%= comment.id %>
   </p>
-  <a href="#"
-     id='comment-<%= comment.id %>'
-     data-reflex="click->ProfileLike#like"
-     data-comment_id="<%= comment.id %>"
-     data-current_user="<%= current_user.profile.id %>">
-    like <%= @state %>
-  </a>
+
+  <div id="like_<%= dom_id comment %>">
+    <%= render "comments/like", comment: comment, state: @state %>
+  </div>
 
   <% if action_name != "show" %>
     <%= link_to "Show this comment", post_comments_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block " %>
